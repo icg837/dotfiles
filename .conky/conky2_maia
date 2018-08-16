@@ -1,0 +1,72 @@
+conky.config = {
+	alignment = 'top_right',
+	background = true,
+	color2 = '5D7B86',
+	cpu_avg_samples = 4,
+	default_color = 'F9FAF9',
+	double_buffer = true,
+	font = 'Bitstream Vera Sans:size=8',
+	draw_shades = false,
+	gap_x = 25,
+	gap_y = 13,
+	minimum_width = 200,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 1.0,
+	use_xft = true,
+}
+conky.text = [[
+${color #3F845C}${font UbuntuMono:size=7}${execi 10000 screenfetch -L -N}$font${color #419972}
+${voffset 0}\
+$alignr${font Comfortaa:bold:size=20}${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-release |sed 's/"//g'}$font
+${voffset 10}\
+$color$alignr${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
+$color$hr
+${voffset 0}$color2${font Bitstream Vera Sans:size=16}${time %A}$font\
+${voffset -8}$alignr$color${color #bbb}${font Comfortaa:bold:size=42}${time %e}$font
+$color${voffset -30}$color${font Comfortaa:bold:size=18}${time %b}$font\
+${voffset -3} ${color}${font Comfortaa:bold:size=20}${time %Y}$font$color2$hr
+${voffset 10}$color2$hr
+${voffset 4}$alignc$color${font Roboto Bold:size=16}${time %R:%S %Z}$font
+$color2${hr}${goto 10}
+
+${voffset 10}${goto 40}${color}CPU${font Bitstream Vera Sans:bold:size=8}$alignr$cpu%
+${voffset 5}${goto 40}$font$color2${top name 1}$alignr$color${top cpu 1}%
+${goto 40}$color2${top name 2}$alignr$color${top cpu 2}%
+${goto 40}$color2${top name 3}$alignr$color${top cpu 3}%
+${goto 40}$color2${top name 4}$alignr$color${top cpu 4}%
+
+
+${voffset 10}${goto 40}${color}RAM${font Bitstream Vera Sans:bold:size=8}$alignr$mem$font
+${goto 40}${voffset 5}$color2${top_mem name 1}$alignr$color${top_mem mem_res 1}
+${goto 40}$color2${top_mem name 2}$alignr$color${top_mem mem_res 2}
+${goto 40}$color2${top_mem name 3}$alignr$color${top_mem mem_res 3}
+${goto 40}$color2${top_mem name 4}$alignr$color${top_mem mem_res 4}
+
+${voffset 10}$color2$hr
+${voffset 10}${goto 40}${color2}Download speed :${goto 120}${color}$alignr${downspeedf wlp2s0} KiB/s
+
+${voffset 10}${goto 40}${color2}Upload speed :${goto 120}${color}$alignr${upspeedf wlp2s0} KiB/s
+$hr
+
+${color2}Total Downloaded: ${color}${alignr}${totaldown wlp2s0}
+
+${color2}Total Uploaded: ${color}${alignr}${totalup wlp2s0}
+
+${voffset 10}$color2$hr
+
+${color2}${font Bitstream Vera Sans:Bold:size=8}MPD
+${voffset -1}${font Bitstream Vera Sans:Bold:size=8}${color2}${mpd_bar 4}
+$alignr$color$font${voffset -5}$mpd_elapsed / $mpd_length
+
+${voffset -2}${color}${if_empty $mpd_track}${font Ubuntu:Bold:Italic:size=8}${color2}${alignr}[No Title]$else${font Ubuntu:Bold:Italic:size=8}${color}${alignr}${mpd_title 45}$endif
+
+${voffset -13}${if_empty $mpd_album}${font Bitstream Vera Sans:size=8}${color2}${alignc}[No Album]$else${font Ubuntu:size=8}${color}${alignc}~$mpd_album~$endif
+
+${voffset 2}${if_empty $mpd_artist}${font Bitstream Vera Sans:size=8}${color2}[No Artist]$else${font Ubuntu:size=8}${color}$mpd_artist$endif
+
+$hr
+$color2$hr
+]]

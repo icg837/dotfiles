@@ -1,0 +1,46 @@
+conky.config = {
+	alignment = 'bottom_left',
+	background = true,
+	color2 = '5D7B86',
+	cpu_avg_samples = 2,
+	default_color = 'F9FAF9',
+	double_buffer = true,
+	-- font = 'Bitstream Vera Sans:size=8',
+	font = 'Liberation Sans:size=10',
+	draw_shades = false,
+	gap_x = 25,
+	gap_y = 45,
+	minimum_width = 200,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 2.0,
+	use_xft = true,
+}
+conky.text = [[
+$color${alignc}i3-wm
+$color2$hr
+${color2}abrir nueva terminal - ${color}mod+Enter
+${color2}cerrar ventana en foco - ${color}mod+Shift+q
+${color2}abrir navegador - ${color}mod+F2
+${color2}cambiar dirección de invocación - ${color}mod+q (mod+v = vertical; mod+h = horizontal)
+${color2}dmenu - ${color}mod+d
+${color2}bmenu - ${color}mod+Ctrl+b
+${color2}morc_menu - ${color}mod+z
+${color2}cambiar a escritorio 1-9 - ${color}mod+1-9
+${color2}enviar a escritorio 1-9 - ${color}mod+Ctrl+1-9
+${color2}navegar entre escritorios - ${color}mod+Ctrl+flechas
+${color2}navegar entre ventanas - ${color}mod+flechas (J ←   K ↓   I ↑   L →)
+${color2}intercambiar ventanas - ${color}mod+Shift+flechas
+${color2}agrupar ventanas en fichas - ${color}mod+s
+${color2}agrupar ventanas en pestañas - ${color}mod+w
+${color2}desagrupar ventanas - ${color}mod+e
+${color2}cambiar a flotante - ${color}mod+Shift+Space
+${color2}redimensionar ventanas - ${color}mod+r
+${color2}reiniciar i3 - ${color}mod+Shift+r
+${color2}salir - ${color}mod+0
+
+${color2}ayuda - ${color}mod+Shift+h
+default mod=<Super>
+]]

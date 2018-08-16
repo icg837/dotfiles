@@ -1,0 +1,71 @@
+conky.config = {
+	alignment = 'bottom_middle',
+	background = true,
+	color2 = '5D7B86',
+	cpu_avg_samples = 2,
+	default_color = 'F9FAF9',
+	double_buffer = true,
+	-- font = 'Bitstream Vera Sans:size=8',
+	font = 'Liberation Sans:size=10',
+	draw_shades = false,
+	gap_x = -25,
+	gap_y = 45,
+	minimum_width = 500,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 2.0,
+	use_xft = true,
+}
+conky.text = [[
+$color${alignc}qutebrowser
+$color2$hr
+
+$color${font Liberation Sans:Bold:size=10}Copiar$font${goto 225}$color${font Liberation Sans:Bold:size=10}Apertura / Cierre$font
+$color2$hr
+${color2}copiar URL a portapapeles - ${color}yy
+${color2}copiar URL a selección - ${color}yY
+${goto 225}${voffset -33}${color2}abrir - ${color}o
+${goto 225}${color2}abrir en nueva pestaña - ${color}O
+${goto 225}${color2}editar y abrir URL actual - ${color}go
+${goto 225}${color2}editar y abrir URL actual en nueva pestaña - ${color}gO
+${goto 225}${color2}seleccionar enlace - ${color}f
+${goto 225}${color2}seleccionar enlace para nueva pestaña - ${color}F
+${goto 225}${color2}insertar texto - ${color}i
+${goto 225}${color2}recargar página - ${color}r (para ignorar caché, R)
+${goto 225}${color2}cerrar pestaña - ${color}d
+${goto 225}${color2}guardar en marcadores - ${color}M
+$color2$hr
+
+$color${font Liberation Sans:Bold:size=10}Pegar$font
+$color2$hr
+${color2}abrir URL de portapapeles - ${color}pp
+${color2}abrir URL de selección - ${color}pP
+${color2}abrir URL de portapapeles en nueva pestaña - ${color}Pp
+${color2}abrir URL de selección en nueva pestaña - ${color}PP
+$color2$hr
+
+$color${font Liberation Sans:Bold:size=10}Anterior / Posterior$font
+$color2$hr
+${color2}Hacia atrás - ${color}H / th
+${color2}Hacia adelante - ${color}L / tl
+$color2$hr
+
+$color${font Liberation Sans:Bold:size=10}Desplazamiento$font
+$color2$hr
+${color2}izquierda - ${color}h
+${color2}abajo - ${color}j
+${color2}arriba - ${color}k
+${color2}derecha - ${color}l
+${color2}Página abajo - ${color}Ctrl+f
+${color2}Página arriba - ${color}Ctrl+b
+${color2}Media página abajo - ${color}Ctrl+d
+${color2}Media página arriba - ${color}Ctrl+u
+${goto 225}${voffset -127}${color2}pestaña siguiente - ${color}J
+${goto 225}${color2}pestaña anterior - ${color}K
+${goto 225}${color2}buscar palabra - ${color}/palabra
+${goto 225}${color2}continuar búsqueda hacia adelante - ${color}n
+${goto 225}${color2}continuar búsqueda hacia atrás - ${color}N
+${voffset 97}$color2$hr
+]]

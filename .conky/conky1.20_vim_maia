@@ -1,0 +1,67 @@
+conky.config = {
+	alignment = 'top_left',
+	background = true,
+	color2 = '5D7B86',
+	cpu_avg_samples = 2,
+	default_color = 'F9FAF9',
+	double_buffer = true,
+	-- font = 'Bitstream Vera Sans:size=8',
+	font = 'Liberation Sans:size=10',
+	draw_shades = false,
+	gap_x = 25,
+	gap_y = 13,
+	minimum_width = 200,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 2.0,
+	use_xft = true,
+}
+conky.text = [[
+$color${alignc}vim
+$color2$hr
+${color2}abrir o crear archivo - ${color}:edit ruta/del/archivo
+${color2}insertar texto en posición del cursor - ${color}i
+${color2}insertar texto después del cursor - ${color}a
+${color2}insertar texto creando nueva línea debajo - ${color}o
+${color2}insertar texto creando nueva línea encima - ${color}O
+${color2}borrar carácter en posición del cursor - ${color}x
+${color2}guardar archivo - ${color}:w
+${color2}guardar archivo con privilegios - ${color}:w !sudo tee %
+${color2}salir del editor - ${color}:q
+${color2}salir del archivo - ${color}:bd
+${color2}guardar y salir - ${color}:wq / :x
+${color2}forzar salida del editor - ${color}:q!
+
+${goto 400}${voffset -208}${color2}seleccionar texto en líneas - ${color}v
+${goto 400}${color2}seleccionar líneas enteras - ${color}V
+${goto 400}${color2}seleccionar texto en bloques - ${color}Ctrl-v
+${goto 400}${color2}copiar texto - ${color}v+y
+${goto 400}${color2}copiar línea sobre el cursor - ${color}yy
+${goto 400}${color2}copiar hasta el final de la línea sobre el cursor - ${color}y$$
+${goto 400}${color2}copiar palabra sobre el cursor - ${color}yw
+${goto 400}${color2}cortar texto - ${color}v+d
+${goto 400}${color2}cortar línea sobre el cursor - ${color}dd
+${goto 400}${color2}cortar hasta el final de la línea sobre el cursor - ${color}d$$
+${goto 400}${color2}cortar palabra sobre el cursor - ${color}dw
+${goto 400}${color2}pegar después del cursor - ${color}p
+${goto 400}${color2}pegar antes del cursor - ${color}P
+
+${voffset -23}${color2}buscar palabra - ${color}/palabra (sensible a mayúsculas)
+${color2}continuar búsqueda hacia adelante - ${color}n
+${color2}continuar búsqueda hacia atrás - ${color}N
+
+${color2}deshacer edición - ${color}u
+${color2}rehacer edición - ${color}Ctrl+r
+
+${color2}moverse hacia adelante al principio de una palabra - ${color}w / W (en mayúsculas, incluye símbolos gráficos)
+${color2}moverse hacia adelante al final de una palabra - ${color}e / E
+${color2}moverse hacia atrás al principio de una palabra - ${color}b / B
+${color2}moverse hacia atrás al final de una palabra - ${color}ge / gE
+${color2}moverse al principio de la línea - ${color}0
+${color2}moverse al final de la línea - ${color}$$
+${color2}moverse a la primera línea del archivo - ${color}gg
+${color2}moverse a la última línea del archivo - ${color}G
+${color2}moverse a la línea x del archivo - ${color}xG (donde x es un número)
+]]
