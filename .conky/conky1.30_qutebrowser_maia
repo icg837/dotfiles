@@ -67,5 +67,5 @@ ${goto 225}${color2}pestaña anterior - ${color}K
 ${goto 225}${color2}buscar palabra - ${color}/palabra
 ${goto 225}${color2}continuar búsqueda hacia adelante - ${color}n
 ${goto 225}${color2}continuar búsqueda hacia atrás - ${color}N
-${voffset 97}$color2$hr
+${voffset 50}$color2$hr
 ]]
