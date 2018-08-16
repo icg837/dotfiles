@@ -1,0 +1,23 @@
+#Sets the audio sources to use
+audio.sources=mpd
+
+#Available smoothing options are monstercat, sgs, none. 
+visualizer.spectrum.smoothing.mode=monstercat 
+visualizer.spectrum.falloff.mode=top 
+visualizer.spectrum.bar.width=2
+
+#Configures the Visualizer and the order they are in. The Available visualizers are spectrum,lorenz,ellipse. 
+#Defaults to spectrum,ellipse,lorenz 
+Visualizer=spectrum 
+#Visualizer=ellipse 
+#Visualizer=lorenz 
+
+# Configures what character the ellipse visualizer will use. Specifying a space (e. g," ") means the 
+#background will be colored instead of the character. Defaults to " ". 
+#visualizer.ellipse.character=# 
+
+#The radius of each color ring in the ellipse visualizer. Defaults to 2. 
+visualizer.ellipse.character=# 
+visualizer.ellipse.radius=2
+
+audio.stereo.enabled=false
