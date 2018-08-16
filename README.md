@@ -1,2 +1,2 @@
 # dotfiles
-# dotfiles
+Files for Manjaro i3.
