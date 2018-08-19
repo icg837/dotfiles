@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/zsh
 
 conky -c /usr/share/conky/conky1.10_shortcuts_maia &&
-conky -c /usr/share/conky/conky1.20_vim_maia &&
-conky -c /usr/share/conky/conky1.30_qutebrowser_maia &&
+#conky -c /usr/share/conky/conky1.20_vim_maia &&
+#conky -c /usr/share/conky/conky1.30_qutebrowser_maia &&
 #conky -c /usr/share/conky/conky_maia &&
 conky -c /usr/share/conky/conky2_maia &&
 
