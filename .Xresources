@@ -58,8 +58,10 @@ Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
 ! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-URxvt.font:                       xft:InconsolataLGCNerdFontMono:size=7
+! URxvt.font:                       xft:InconsolataLGCNerdFontMono:size=7
 ! URxvt.font:                       xft:UbuntuMono Nerd Font:pixelsize=10
+! URxvt.font:                       xft:artwiz aqui.se:style=bold:pixelsize=20
+URxvt.font:                       xft:Hack Nerd Font Mono:style=Regular:size=8
 
 ! alternative font settings with 'terminus':
 ! URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
@@ -67,18 +69,21 @@ URxvt.font:                       xft:InconsolataLGCNerdFontMono:size=7
 !! terminus names see end of file!
 
 URxvt.depth:                      32
-URxvt.background:                 [100]#222D31
+!URxvt.background:                 [100]#222D31
+URxvt.background:                 [100]#200200
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
-URxvt*background:                 black
-URxvt*foreground:                 grey
+!URxvt*background:                 black
+URxvt*background:                 #fafafa
+!URxvt*foreground:                 grey
+URxvt*foreground:                 #fafafa
 URxvt*saveLines:                  5000
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
-URxvt*inheritPixmap:            true
-URxvt*transparent:              true
-URxvt*shading:                  20
+!URxvt*inheritPixmap:            true
+!URxvt*transparent:              true
+!URxvt*shading:                  20
 
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   false
@@ -126,22 +131,22 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*insecure:                   boolean
 ! URxvt*cursorUnderline:            boolean
 ! URxvt*pointerBlank:               boolean
-! URxvt*color0:                     color
-! URxvt*color1:                     color
-! URxvt*color2:                     color
-! URxvt*color3:                     color
-! URxvt*color4:                     color
-! URxvt*color5:                     color
-! URxvt*color6:                     color
-! URxvt*color7:                     color
-! URxvt*color8:                     color
-! URxvt*color9:                     color
-! URxvt*color10:                    color
-! URxvt*color11:                    color
-! URxvt*color12:                    color
-! URxvt*color13:                    color
-! URxvt*color14:                    color
-! URxvt*color15:                    color
+URxvt*color0:                     #fafafa
+URxvt*color1:                     #D19D18
+!URxvt*color2:                     #DDA511
+!URxvt*color3:                     #E9AF11
+!URxvt*color4:                     #E0B12E
+!URxvt*color5:                     #9A906F
+!URxvt*color6:                     #314280
+!URxvt*color7:                     #251F13
+!URxvt*color8:                     #868686
+!URxvt*color9:                     #D19D18
+!URxvt*color10:                    #DDA511
+!URxvt*color11:                    #E9AF11
+!URxvt*color12:                    #E0B12E
+!URxvt*color13:                    #9A906F
+!URxvt*color14:                    #314280
+!URxvt*color15:                    #251F13
 ! URxvt*colorBD:                    color
 ! URxvt*colorIT:                    color
 ! URxvt*colorUL:                    color
