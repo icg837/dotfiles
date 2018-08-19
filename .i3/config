@@ -315,10 +315,12 @@ exec --no-startup-id urxvt -e htop
 exec --no-startup-id urxvt -e tty-clock -c -C 4 -s -f %d/%m/%Y
 exec --no-startup-id urxvt -e ncmpcpp
 #exec --no-startup-id feh --bg-scale Imágenes/Fondos/wallpaper-1570499.jpg
-exec --no-startup-id sh ~/.fehbg
+exec --no-startup-id urxvt -e sh ~/.fehbg &
 exec_always --no-startup-id ~/polybarstart.sh &
 exec --no-startup-id setxkbmap -layout es,ru -variant ,phonetic &
 exec --no-startup-id setxkbmap -option 'grp:alt_shift_toggle' &
+exec --no-startup-id urxvt -e wal -R
+exec --no-startup-id urxvt -e wal -i "$(< "${HOME}/.cache/wal/wal")" &
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
