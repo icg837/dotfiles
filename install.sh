@@ -111,10 +111,10 @@ env-update && source /etc/profile && export PS1="(chroot) $PS1"
 #### Parte 4ª: instalación y configuración del kernel ####
 
 ## Instalar las fuentes
-time emerge -av sys-kernel/gentoo-sources
+time emerge -qav sys-kernel/gentoo-sources
 
 ## Subparte 1ª: instalación manual
-time emerge -av sys-apps/pciutils
+time emerge -qav sys-apps/pciutils
 cd /usr/src/linux
 make menuconfig
 ## En este punto seleccionar y deseleccionar aquello que se vaya a usar y que no se vaya a usar
@@ -122,7 +122,7 @@ make && make modules_install
 make install
 
 ## Subparte 2ª: genkernel
-time emerge -av sys-kernel/genkernel
+time emerge -qav sys-kernel/genkernel
 nano -w /etc/fstab
 # /dev/sda1 /boot ext2 defaults,noatime 0 2
 # /dev/sda2 /boot/efi vfat defaults,noatime 0 2
@@ -137,7 +137,7 @@ find /lib/modules/<kernel version>/ -type f -iname '*.o' -or -iname '*.ko' | les
 mkdir -p /etc/modules-load.d
 nano -w /etc/modules-load.d/network.conf
 ## Escribir el nombre del módulo a cargar automáticamente, en caso necesario
-emerge -av sys-kernel/linux-firmware net-wireless/broadcom-sta x11-misc/sddm
+emerge -qav sys-kernel/linux-firmware net-wireless/broadcom-sta x11-misc/sddm
 ip link show
 emerge -avn net-misc/netifrc
 nano -w /etc/conf.d/net
@@ -159,20 +159,20 @@ nano -w /etc/conf.d/keymaps
 # Seleccionar el teclado adecuado
 nano -w /etc/conf.d/hwclock
 # clock="local" ## Cambiar a UTC o a local según el caso
-time emerge -av app-admin/sysklogd
+time emerge -qav app-admin/sysklogd
 rc-update add sysklogd default
-time emerge -av sys-process/cronie
+time emerge -qav sys-process/cronie
 rc-update add cronie default
-time emerge -av sys-apps/mlocate
-time emerge -av net-misc/dhcpcd
-time emerge -av net-wireless/iw net-wireless/wpa_supplicant
+time emerge -qav sys-apps/mlocate
+time emerge -qav net-misc/dhcpcd
+time emerge -qav net-wireless/iw net-wireless/wpa_supplicant
 echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
-time emerge -av sys-boot/grub:2
+time emerge -qav sys-boot/grub:2
 grub-install --target=x86_64-efi --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 ## Opcional
-time emerge -av app-shells/zsh app-shells/zsh-completions app-shells/gentoo-zsh-completions
+time emerge -qav app-shells/zsh app-shells/zsh-completions app-shells/gentoo-zsh-completions
 chsh -s /bin/zsh
 
 ## Finalización
