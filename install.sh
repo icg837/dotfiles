@@ -180,3 +180,24 @@ cd
 umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
 reboot
+
+#### Parte 6ª: Consideraciones al usar un LiveCD/DVD de otra distribución ####
+## Crear el directorio para gentoo antes de montar las particiones
+mkdir /mnt/gentoo
+mount /dev/sda3 /mnt/gentoo
+mkdir /mnt/gentoo/home
+mount /dev/sda4 /mnt/gentoo/home
+
+## Desempaquetar stage3
+# tar xvpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xvjpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner -C /mnt/gentoo
+
+## Montar el sistema de archivos proc
+# mount --types proc /proc /mnt/gentoo/proc
+mount -o bind /proc /mnt/gentoo/proc
+
+## chroot
+chroot /mnt/gentoo /bin/env -i TERM=$TERM /bin/bash
+env-update
+source /etc/profile
+export PS1="(chroot) $PS1"
