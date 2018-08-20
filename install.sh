@@ -125,7 +125,6 @@ make install
 time emerge -qav sys-kernel/genkernel
 nano -w /etc/fstab
 # /dev/sda1 /boot ext2 defaults,noatime 0 2
-# /dev/sda2 /boot/efi vfat defaults,noatime 0 2
 # /dev/sda3 / ext4 defaults,noatime 0 1
 # /dev/sda4 /home ext4 defaults,noatime 0 2
 genkernel --no-zfs --no-btrfs --menuconfig all
