@@ -197,6 +197,7 @@ tar xvjpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner -C /mnt/gentoo
 mount -o bind /proc /mnt/gentoo/proc
 
 ## chroot
+# chroot /mnt/gentoo /bin/bash
 chroot /mnt/gentoo /bin/env -i TERM=$TERM /bin/bash
 env-update
 source /etc/profile
