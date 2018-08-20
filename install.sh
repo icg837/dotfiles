@@ -12,6 +12,10 @@ mount /dev/sda4 /mnt/gentoo/home
 
 #### Parte 2ª: instalar los paquetes del stage ####
 
+## Determinar la hora
+
+date MMDDhhmmYY
+
 ## Descargar el paquete stage3
 cd /mnt/gentoo
 wget -c ftp://ftp.uni-erlangen.de/pub/mirrors/gentoo/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-XXXXXX.tar.xz
@@ -81,3 +85,99 @@ swapon /swapfile
 mount /dev/sda1 /boot
 mkdir /boot/efi
 mount /dev/sda2 /boot/efi
+
+## Sincronizar espejos y seleccionar perfiles
+time emerge --sync --quiet
+eselect profile list
+eselect profile set X ## La X es el número de perfil, en mi caso sería sin systemd
+time emerge -qavuND @world
+
+## Configurar zona horaria
+ls /usr/share/zoneinfo
+echo "Europe/Madrid" > /etc/timezone
+emerge --config sys-libs/timezone-data
+
+## Configurar idioma
+nano -w /etc/locale.gen
+# Descomentar es_ES.UTF-8 UTF-8
+nano -w /etc/env.d/02locale ## Sólo si no existe o si no está configurado
+# LANG="es_ES.UTF-8"
+# LC_COLLATE="C"
+locale-gen
+eselect locale list
+eselect locale set X ## La X es el número de locale, en mi caso sería es_ES.utf-8
+env-update && source /etc/profile && export PS1="(chroot) $PS1"
+
+#### Parte 4ª: instalación y configuración del kernel ####
+
+## Instalar las fuentes
+time emerge -av sys-kernel/gentoo-sources
+
+## Subparte 1ª: instalación manual
+time emerge -av sys-apps/pciutils
+cd /usr/src/linux
+make menuconfig
+## En este punto seleccionar y deseleccionar aquello que se vaya a usar y que no se vaya a usar
+make && make modules_install
+make install
+
+## Subparte 2ª: genkernel
+time emerge -av sys-kernel/genkernel
+nano -w /etc/fstab
+# /dev/sda1 /boot ext2 defaults,noatime 0 2
+# /dev/sda2 /boot/efi vfat defaults,noatime 0 2
+# /dev/sda3 / ext4 defaults,noatime 0 1
+# /dev/sda4 /home ext4 defaults,noatime 0 2
+genkernel --no-zfs --no-btrfs --menuconfig all
+## En este punto seleccionar y deseleccionar aquello que se vaya a usar y que no se vaya a usar
+ls /boot/kernel* /boot/initramfs* ## Apuntar los nombres del kernel y del initrd para usarlos más adelante, en el boot
+
+## Configurar los módulos
+find /lib/modules/<kernel version>/ -type f -iname '*.o' -or -iname '*.ko' | less
+mkdir -p /etc/modules-load.d
+nano -w /etc/modules-load.d/network.conf
+## Escribir el nombre del módulo a cargar automáticamente, en caso necesario
+emerge -av sys-kernel/linux-firmware net-wireless/broadcom-sta x11-misc/sddm
+ip link show
+emerge -avn net-misc/netifrc
+nano -w /etc/conf.d/net
+# config_wlp2s0=”dhcp”
+cd /etc/init.d && ln -s net.lo net.wlp2s0 && rc-update add net.wlp2s0 default
+
+#### Parte 5ª: Configuración variada ####
+
+## Contraseña
+passwd
+
+## Host
+nano -w /etc/conf.d/hostname
+# hostname="gentoo"
+nano -w /etc/hosts
+nano -w /etc/rc.conf
+# Cambiar lo necesario, en su caso
+nano -w /etc/conf.d/keymaps
+# Seleccionar el teclado adecuado
+nano -w /etc/conf.d/hwclock
+# clock="local" ## Cambiar a UTC o a local según el caso
+time emerge -av app-admin/sysklogd
+rc-update add sysklogd default
+time emerge -av sys-process/cronie
+rc-update add cronie default
+time emerge -av sys-apps/mlocate
+time emerge -av net-misc/dhcpcd
+time emerge -av net-wireless/iw net-wireless/wpa_supplicant
+echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+time emerge -av sys-boot/grub:2
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
+grub-mkconfig -o /boot/grub/grub.cfg
+
+## Opcional
+time emerge -av app-shells/zsh app-shells/zsh-completions app-shells/gentoo-zsh-completions
+chsh -s /bin/zsh
+
+## Finalización
+exit
+cd
+umount -l /mnt/gentoo/dev{/shm,/pts,}
+umount -R /mnt/gentoo
+reboot
